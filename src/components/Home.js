@@ -89,17 +89,20 @@ const handleCount = () =>{
 }
 
 const handleClick = useCallback((item) => {
+    console.log('item.id',item.id);
     setClickedIndex(item.id);
-    currentTitile = item.title;
-    prevClickedTitle = clickedTitle;
-    setClickedTitle(currentTitile)
-    
-    if(prevClickedTitle === currentTitile){
-        score +=1;
-        const newArray = [...matchFound, currentTitile];
-        setMatchFound(newArray);
-        setScore(score);
+    if(item.id !== clickedIndex){
+        currentTitile = item.title;
+        prevClickedTitle = clickedTitle;
+        setClickedTitle(currentTitile)
+        if(prevClickedTitle === currentTitile){
+            score +=1;
+            const newArray = [...matchFound, currentTitile];
+            setMatchFound(newArray);
+            setScore(score);
+        }
     }
+
 });
  
 
@@ -116,11 +119,11 @@ const handleClick = useCallback((item) => {
                         imageCollection.map((item,index) =>{
                             return(
                                 <div 
-                                className={`box flex justify-center border rounded-sm p-5 cursor-pointer ${index === clickedIndex || matchFound.find(title => title === item.title) ? 'bg-white' : 'bg-black'} md:h-[200px] h-[100px]`} 
+                                className={`box flex justify-center border rounded-sm p-5 cursor-pointer ${index === clickedIndex || matchFound.find(title => title === item.title) ? 'bg-white' : 'bg-zinc-400'} md:h-[200px] h-[100px]`} 
                                 key={index} 
                                 onClick={() => handleClick(item)}>     
                                     <img 
-                                        className={`md:h-[150px] h-auto ${index === clickedIndex || matchFound.find(title => title === item.title) ? 'block' : 'hidden'}`} 
+                                        className={`md:h-[150px] h-auto ${index === clickedIndex || matchFound.find(title => title === item.title) ? 'block' : 'hidden'} `} 
                                         src={item.url} 
                                         alt={item.title}>
                                     </img>               
