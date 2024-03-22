@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.imageGrid{
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
+}
+.box{
+  box-shadow: 0px 4px 3px #b9b6b6
+}
